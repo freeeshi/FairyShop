@@ -3,5 +3,13 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
+	<!-- 配置分页插件 -->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<!-- 指定数据库为mysql -->
+			<!-- <property name="dialect" value="mysql"/> -->
+		</plugin>
+	</plugins>
  
 </configuration>

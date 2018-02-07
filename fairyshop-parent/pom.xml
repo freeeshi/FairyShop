@@ -39,6 +39,14 @@
 	<dependencyManagement>
 		<dependencies>
 		
+			<!-- 测试包 -->
+			<dependency>
+			    <groupId>junit</groupId>
+			    <artifactId>junit</artifactId>
+			    <version>${junit.version}</version>
+			    <scope>test</scope>
+			</dependency>
+		
 			<!-- 时间操作组件 -->
 			<dependency>
 				<groupId>joda-time</groupId>

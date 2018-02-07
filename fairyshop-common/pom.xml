@@ -12,6 +12,13 @@
 	<version>0.0.1-SNAPSHOT</version>
   
 	<dependencies>
+	
+		<!-- 测试包 -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		</dependency>
+			
 		<!-- 时间操作组件 -->
 		<dependency>
 			<groupId>joda-time</groupId>
