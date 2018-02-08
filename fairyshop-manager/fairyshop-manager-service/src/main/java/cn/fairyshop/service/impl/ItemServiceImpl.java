@@ -1,14 +1,19 @@
-package cn.fairyshop.service;
+package cn.fairyshop.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+import cn.fairyshop.common.pojo.EasyUIDataGridResult;
 import cn.fairyshop.mapper.TbItemMapper;
 import cn.fairyshop.pojo.TbItem;
 import cn.fairyshop.pojo.TbItemExample;
 import cn.fairyshop.pojo.TbItemExample.Criteria;
+import cn.fairyshop.service.ItemService;
 
 /*
  * 测试：通过itemId查询商品信息
@@ -39,6 +44,26 @@ public class ItemServiceImpl implements ItemService {
 		}
 		
 		return item;
+	}
+
+	@Override
+	public EasyUIDataGridResult getItemList(int page, int rows) {
+		// 分页操作
+		PageHelper.startPage(page, rows);
+		
+		// 进行查询
+		TbItemExample example = new TbItemExample();
+		List<TbItem> items = itemMapper.selectByExample(example);
+		
+		// 取出分页信息
+		PageInfo<TbItem> pageInfo = new PageInfo<>(items);
+		
+		// 构造返回对象EasyUIDataGridResult
+		EasyUIDataGridResult result = new EasyUIDataGridResult();
+		result.setTotal(pageInfo.getTotal());
+		result.setRows(items);
+		
+		return result;
 	}
 
 }

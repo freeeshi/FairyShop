@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.fairyshop.common.pojo.EasyUIDataGridResult;
 import cn.fairyshop.pojo.TbItem;
 import cn.fairyshop.service.ItemService;
 
@@ -19,6 +20,12 @@ public class ItemController {
 	@ResponseBody
 	public TbItem getItemById(@PathVariable Long itemId) {
 		return itemService.getItemById(itemId);
+	}
+	
+	@RequestMapping("/item/list")
+	@ResponseBody
+	public EasyUIDataGridResult getItemList(Integer page, Integer rows) {
+		return itemService.getItemList(page, rows);
 	}
 
 }

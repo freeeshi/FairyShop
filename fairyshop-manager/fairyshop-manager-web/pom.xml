@@ -13,6 +13,13 @@
 	<packaging>war</packaging>
 	
 	<dependencies>
+	
+		<!-- Jackson Json处理工具包 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		
 		<!-- 测试包 -->
 		<dependency>
 		    <groupId>junit</groupId>
