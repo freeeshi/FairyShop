@@ -13,6 +13,9 @@
         <dependent-module archiveName="fairyshop-manager-pojo-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fairyshop-manager-pojo/fairyshop-manager-pojo">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="fastdfs_client-1.25.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fastdfs_client/fastdfs_client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="fairyshop-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fairyshop-common/fairyshop-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
