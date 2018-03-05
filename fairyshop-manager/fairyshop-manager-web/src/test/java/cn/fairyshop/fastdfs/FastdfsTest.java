@@ -15,7 +15,7 @@ public class FastdfsTest {
 	
 	public static void main(String[] args) {
 		try {
-			testUpload();
+			testFastdfsClient();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,6 +52,13 @@ public class FastdfsTest {
 		for(String i : infos) {
 			System.out.println(i);
 		}
+	}
+	
+	@Test
+	public static void testFastdfsClient() throws FileNotFoundException, IOException, MyException {
+		FastdfsClient client = new FastdfsClient("D:\\WorkSpace\\FairyShop\\fairyshop-manager\\fairyshop-manager-web\\src\\main\\resources\\properties\\client.conf");
+		String url = client.uploadFile("E:\\hello.jpg", "jpg", null);
+		System.out.println(url);
 	}
 
 }
