@@ -1,4 +1,4 @@
-package cn.fairyshop.fastdfs;
+package cn.fairyshop.common.utils;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,6 +19,10 @@ public class FastdfsClient {
 	StorageClient storageClient = null;
 	
 	public FastdfsClient(String conf) throws FileNotFoundException, IOException, MyException {
+		if(conf.contains("classpath:")) {
+			conf = conf.replaceAll("classpath:", this.getClass().getResource("/").getPath());
+		}
+		
 		ClientGlobal.init(conf);
 		trackerClient = new TrackerClient();
 		trackerServer = trackerClient.getConnection();
