@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.fairyshop.common.pojo.EasyUIDataGridResult;
+import cn.fairyshop.common.pojo.FSResult;
 import cn.fairyshop.pojo.TbItem;
 import cn.fairyshop.service.ItemService;
 
@@ -26,6 +27,13 @@ public class ItemController {
 	@ResponseBody
 	public EasyUIDataGridResult getItemList(Integer page, Integer rows) {
 		return itemService.getItemList(page, rows);
+	}
+	
+	@RequestMapping(value="/item/save")
+	@ResponseBody
+	public FSResult createItem(TbItem item, String desc) {
+		FSResult result = itemService.createItem(item, desc);
+		return result;
 	}
 
 }

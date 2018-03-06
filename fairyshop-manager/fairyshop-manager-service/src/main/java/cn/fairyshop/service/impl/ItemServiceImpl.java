@@ -1,5 +1,6 @@
 package cn.fairyshop.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import cn.fairyshop.common.pojo.EasyUIDataGridResult;
+import cn.fairyshop.common.pojo.FSResult;
+import cn.fairyshop.common.utils.IDUtils;
+import cn.fairyshop.mapper.TbItemDescMapper;
 import cn.fairyshop.mapper.TbItemMapper;
 import cn.fairyshop.pojo.TbItem;
+import cn.fairyshop.pojo.TbItemDesc;
 import cn.fairyshop.pojo.TbItemExample;
 import cn.fairyshop.pojo.TbItemExample.Criteria;
 import cn.fairyshop.service.ItemService;
@@ -23,6 +28,9 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Autowired
 	private TbItemMapper itemMapper = null;
+	
+	@Autowired
+	private TbItemDescMapper itemDescMapper = null;
 
 	@Override
 	public TbItem getItemById(Long itemId) {
@@ -64,6 +72,32 @@ public class ItemServiceImpl implements ItemService {
 		result.setRows(items);
 		
 		return result;
+	}
+
+	@Override
+	public FSResult createItem(TbItem item, String desc) {
+		// 生成商品ID
+		long itemId = IDUtils.genItemId();
+		item.setId(itemId);
+		// 商品状态  1-正常  2-下架  3-删除
+		item.setStatus((byte) 1);
+		// 更新时间和更改时间
+		Date date = new Date();
+		item.setCreated(date);
+		item.setUpdated(date);
+		// 插入商品
+		itemMapper.insert(item);
+		
+		// 商品描述
+		TbItemDesc itemDesc = new TbItemDesc();
+		itemDesc.setItemId(itemId);
+		itemDesc.setItemDesc(desc);
+		itemDesc.setCreated(date);
+		itemDesc.setUpdated(date);
+		// 插入商品描述
+		itemDescMapper.insert(itemDesc);
+		
+		return FSResult.ok();
 	}
 
 }
