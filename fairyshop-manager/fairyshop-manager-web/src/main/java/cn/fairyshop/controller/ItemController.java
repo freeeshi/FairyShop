@@ -2,6 +2,7 @@ package cn.fairyshop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,9 +32,16 @@ public class ItemController {
 	
 	@RequestMapping(value="/item/save")
 	@ResponseBody
-	public FSResult createItem(TbItem item, String desc) {
-		FSResult result = itemService.createItem(item, desc);
+	public FSResult createItem(TbItem item, String desc, String itemParams) {
+		FSResult result = itemService.createItem(item, desc, itemParams);
 		return result;
+	}
+	
+	@RequestMapping("/page/item/{itemId}")
+	public String showItemParam(@PathVariable Long itemId, Model model) {
+		String paramHtml = itemService.getItemParamHtml(itemId);
+		model.addAttribute("paramHtml", paramHtml);
+		return "itemparam";
 	}
 
 }

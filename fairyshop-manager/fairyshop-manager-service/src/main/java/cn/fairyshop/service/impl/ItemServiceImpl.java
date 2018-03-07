@@ -2,6 +2,7 @@ package cn.fairyshop.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,12 +13,16 @@ import com.github.pagehelper.PageInfo;
 import cn.fairyshop.common.pojo.EasyUIDataGridResult;
 import cn.fairyshop.common.pojo.FSResult;
 import cn.fairyshop.common.utils.IDUtils;
+import cn.fairyshop.common.utils.JsonUtils;
 import cn.fairyshop.mapper.TbItemDescMapper;
 import cn.fairyshop.mapper.TbItemMapper;
+import cn.fairyshop.mapper.TbItemParamItemMapper;
 import cn.fairyshop.pojo.TbItem;
 import cn.fairyshop.pojo.TbItemDesc;
 import cn.fairyshop.pojo.TbItemExample;
 import cn.fairyshop.pojo.TbItemExample.Criteria;
+import cn.fairyshop.pojo.TbItemParamItem;
+import cn.fairyshop.pojo.TbItemParamItemExample;
 import cn.fairyshop.service.ItemService;
 
 /*
@@ -31,6 +36,9 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Autowired
 	private TbItemDescMapper itemDescMapper = null;
+	
+	@Autowired
+	private TbItemParamItemMapper itemParamItemMapper = null;
 
 	@Override
 	public TbItem getItemById(Long itemId) {
@@ -75,7 +83,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public FSResult createItem(TbItem item, String desc) {
+	public FSResult createItem(TbItem item, String desc, String itemParam) {
 		// 生成商品ID
 		long itemId = IDUtils.genItemId();
 		item.setId(itemId);
@@ -97,7 +105,66 @@ public class ItemServiceImpl implements ItemService {
 		// 插入商品描述
 		itemDescMapper.insert(itemDesc);
 		
+		// 添加商品规格参数
+		TbItemParamItem itemParamItem = new TbItemParamItem();
+		itemParamItem.setItemId(itemId);
+		itemParamItem.setParamData(itemParam);
+		itemParamItem.setCreated(date);
+		itemParamItem.setUpdated(date);
+		// 插入商品规格参数
+		itemParamItemMapper.insert(itemParamItem);
+		
 		return FSResult.ok();
+	}
+
+	@Override
+	public String getItemParamHtml(Long itemId) {
+		// 根据商品ID查询商品的规格参数
+		TbItemParamItemExample example = new TbItemParamItemExample();
+		cn.fairyshop.pojo.TbItemParamItemExample.Criteria criteria = example.createCriteria();
+		criteria.andItemIdEqualTo(itemId);
+		// 执行查询
+		List<TbItemParamItem> list = itemParamItemMapper.selectByExampleWithBLOBs(example);
+		
+		// 判断查询结果，非空的话构建html内容
+		String html = "";
+		if(list != null || list.size() > 0) {
+			// 取出查询结果
+			TbItemParamItem itemParamItem = list.get(0);
+			// 取出json格式的参数字符串
+			String paramData = itemParamItem.getParamData();
+			// 将json数据转化成Map集合
+			List<Map> mapList = JsonUtils.jsonToList(paramData, Map.class);
+			
+			// 遍历map，构建html
+			StringBuffer sb = new StringBuffer();
+			
+			sb.append("<table cellpadding=\"0\" cellspacing=\"1\" width=\"100%\" border=\"1\" class=\"Ptable\">");
+			sb.append("  <tbody>");
+			for(Map map : mapList) {
+				// 构建组标题
+				sb.append("    <tr>");
+				sb.append("      <th class=\"tdTitle\"  colspan=\"2\">" + map.get("group") +"</th>");
+				sb.append("    </tr>");
+
+				// 构建各个参数标题
+				List<Map> mapList2 = (List<Map>) map.get("params");
+				for(Map map2 : mapList2) {
+					sb.append("    <tr>");
+					sb.append("      <td class=\"tdTitle\">" + map2.get("k") +"</td>");
+					sb.append("      <td>" + map2.get("v") +"</td>");
+					sb.append("    </tr>");
+				}
+				
+			}
+			sb.append("  </tbody>");
+			sb.append("</table>");
+			
+			html = sb.toString();	
+			System.out.println(html);
+		}
+		
+		return html;
 	}
 
 }

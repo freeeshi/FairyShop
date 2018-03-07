@@ -6,10 +6,12 @@ import cn.fairyshop.pojo.TbItem;
 
 public interface ItemService {
 	
-	public TbItem getItemById(Long itemId);
+	TbItem getItemById(Long itemId);
 	
-	public EasyUIDataGridResult getItemList(int page, int rows);
+	EasyUIDataGridResult getItemList(int page, int rows);
 	
-	public FSResult createItem(TbItem item, String desc);
+	FSResult createItem(TbItem item, String desc, String itemParam);
+	
+	String getItemParamHtml(Long itemId);
 
 }
