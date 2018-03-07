@@ -60,6 +60,7 @@
         			$("#itemeEditForm").form("load",data);
         			
         			// 加载商品描述
+        			//$.getJSON('/rest/item/query/item/desc/'+data.id,function(_data){
         			$.getJSON('/rest/item/query/item/desc/'+data.id,function(_data){
         				if(_data.status == 200){
         					//UM.getEditor('itemeEditDescEditor').setContent(_data.data.itemDesc, false);
@@ -68,6 +69,7 @@
         			});
         			
         			//加载商品规格
+        			//$.getJSON('/rest/item/param/item/query/'+data.id,function(_data){
         			$.getJSON('/rest/item/param/item/query/'+data.id,function(_data){
         				if(_data && _data.status == 200 && _data.data && _data.data.paramData){
         					$("#itemeEditForm .params").show();

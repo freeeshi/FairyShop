@@ -161,7 +161,6 @@ public class ItemServiceImpl implements ItemService {
 			sb.append("</table>");
 			
 			html = sb.toString();	
-			System.out.println(html);
 		}
 		
 		return html;
