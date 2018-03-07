@@ -1,5 +1,6 @@
 package cn.fairyshop.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,10 @@ public class ItemParamServiceImpl implements cn.fairyshop.service.ItemParamServi
 	@Autowired
 	private TbItemParamMapper itemParamMapper = null;
 
+	/*
+	 * 查询对应的商品参数模板，判断是否存在该模板
+	 * @see cn.fairyshop.service.ItemParamService#getItemParamByCid(java.lang.Long)
+	 */
 	@Override
 	public FSResult getItemParamByCid(Long cid) {
 		// 根据cid查询参数模板
@@ -31,6 +36,24 @@ public class ItemParamServiceImpl implements cn.fairyshop.service.ItemParamServi
 			return FSResult.ok(itemParam);
 		}
 		
+		return FSResult.ok();
+	}
+
+	/*
+	 * 插入一个商品规格参数模板
+	 * @see cn.fairyshop.service.ItemParamService#insertItemParam(java.lang.Long, java.lang.String)
+	 */
+	@Override
+	public FSResult insertItemParam(Long cid, String paramData) {
+		// 创建pojo
+		TbItemParam itemParam = new TbItemParam();
+		itemParam.setParamData(paramData);
+		itemParam.setItemCatId(cid);
+		itemParam.setCreated(new Date());
+		itemParam.setUpdated(new Date());
+		
+		// 插入pojo
+		itemParamMapper.insert(itemParam);
 		return FSResult.ok();
 	}
 
