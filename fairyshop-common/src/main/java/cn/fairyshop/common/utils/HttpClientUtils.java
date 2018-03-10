@@ -137,7 +137,7 @@ public class HttpClientUtils {
 		
 		try {
 			// 创建uri
-			URIBuilder builder = new URIBuilder();
+			URIBuilder builder = new URIBuilder(url);
 			if(params != null) {
 				for(String key : params.keySet()) {
 					builder.addParameter(key, params.get(key));
