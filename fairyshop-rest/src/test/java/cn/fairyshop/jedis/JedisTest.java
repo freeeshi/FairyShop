@@ -4,14 +4,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.fairyshop.rest.component.JedisClient;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 
 public class JedisTest {
+	
+	@Test
+	public void testJedisClientSpring() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-*");
+		JedisClient client = context.getBean(JedisClient.class);
+		client.set("key4", "value4");
+		String value = client.get("key4");
+		System.out.println(value);
+	}
 	
 	@Test
 	public void testJedisCluster() throws Exception {
@@ -23,10 +34,6 @@ public class JedisTest {
 		nodes.add(new HostAndPort("192.168.0.151", 7004));
 		nodes.add(new HostAndPort("192.168.0.151", 7005));
 		nodes.add(new HostAndPort("192.168.0.151", 7006));
-		
-//		JedisPoolConfig config = new JedisPoolConfig();
-//		config.setMaxTotal(1000);
-//		config.setMaxIdle(100);
 		
 		// 创建JedisCluster对象，并指定对应nodes
 		JedisCluster cluster = new JedisCluster(nodes);

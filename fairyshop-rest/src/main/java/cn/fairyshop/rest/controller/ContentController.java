@@ -20,5 +20,11 @@ public class ContentController {
 	public FSResult getContentList(@PathVariable Long cid) {
 		return contentService.getContentList(cid);
 	}
+	
+	@RequestMapping("/sync/content/{cid}")
+	@ResponseBody
+	public FSResult syncContent(@PathVariable Long cid) {
+		return contentService.syncContent(cid);
+	}
 
 }
