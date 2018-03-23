@@ -1,4 +1,4 @@
-package cn.fairyshop.search.pojo;
+package cn.fairyshop.portal.pojo;
 
 public class SearchItem {
 	

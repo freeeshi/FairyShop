@@ -12,11 +12,13 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import cn.fairyshop.search.dao.SearchDao;
 import cn.fairyshop.search.pojo.SearchItem;
 import cn.fairyshop.search.pojo.SearchResult;
 
+@Repository
 public class SearchDaoImpl implements SearchDao {
 	
 	@Autowired
@@ -34,7 +36,7 @@ public class SearchDaoImpl implements SearchDao {
 			SearchItem item = new SearchItem();
 			item.setCategory_name((String) solrDocument.get("item_category_name"));
 			item.setId((String) solrDocument.get("id"));
-			item.setImage((String) solrDocument.get("item_image"));
+			item.setImages((String) solrDocument.get("item_image"));
 			item.setPrice((long) solrDocument.get("item_price"));
 			item.setSell_point((String) solrDocument.get("item_sell_point"));
 			

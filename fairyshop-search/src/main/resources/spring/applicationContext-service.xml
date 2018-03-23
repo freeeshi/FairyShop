@@ -15,7 +15,7 @@
 						http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
 	<!-- 包扫描器，扫描带@Service注解的类 -->
-	<context:component-scan base-package="cn.fairyshop.search.service"></context:component-scan>
+	<context:component-scan base-package="cn.fairyshop.search.service, cn.fairyshop.search.dao" />
 
 	<bean id="httpSolrClient" class="org.apache.solr.client.solrj.impl.HttpSolrClient">
 		<constructor-arg name="baseURL"

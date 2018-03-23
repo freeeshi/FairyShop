@@ -37,7 +37,7 @@ public class ItemServiceImpl implements ItemService {
 			document.addField("item_title", item.getTitle());
 			document.addField("item_sell_point", item.getSell_point());
 			document.addField("item_price", item.getPrice());
-			document.addField("item_image", item.getImage());
+			document.addField("item_image", item.getImages());
 			document.addField("item_category_name", item.getCategory_name());
 			document.addField("item_desc", item.getItem_desc());
 			// 添加到索引库中
