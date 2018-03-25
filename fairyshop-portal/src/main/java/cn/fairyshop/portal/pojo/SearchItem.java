@@ -34,6 +34,10 @@ public class SearchItem {
 		this.price = price;
 	}
 	public String getImages() {
+		if(images != null && !images.equals("")) {
+			String[] strings = images.split(",");
+			return strings[0];
+		}
 		return images;
 	}
 	public void setImages(String images) {
