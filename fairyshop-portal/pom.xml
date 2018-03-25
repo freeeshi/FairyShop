@@ -5,9 +5,7 @@
 		<artifactId>fairyshop-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>cn.fairyshop</groupId>
 	<artifactId>fairyshop-portal</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	
 	<dependencies>
@@ -15,6 +13,12 @@
 			<groupId>cn.fairyshop</groupId>
 			<artifactId>fairyshop-manager-pojo</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<!-- freemarker -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
 		</dependency>
 		
 		<!-- 单元测试 -->
