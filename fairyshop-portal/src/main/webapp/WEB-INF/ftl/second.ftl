@@ -1,0 +1,10 @@
+<html>
+<head>
+	<title>${title}</title>
+</head>
+<body>
+	<lable>学号：</lable>${stu.id}<br>
+	<lable>姓名：</lable>${stu.name}<br>
+	<lable>住址：</lable>${stu.addr}<br>
+</body>
+</html>
