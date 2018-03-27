@@ -7,11 +7,16 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<groupId>cn.fairyshop</groupId>
 	<artifactId>fairyshop-common</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
   
 	<dependencies>
+	
+		<!-- servlet API -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 			
 		<!-- 时间操作组件 -->
 		<dependency>
