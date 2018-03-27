@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.fairyshop.common.pojo.FSResult;
 import cn.fairyshop.common.utils.ExceptionUtils;
-import cn.fairyshop.pojo.TbItem;
 import cn.fairyshop.pojo.TbUser;
 import cn.fairyshop.sso.service.RegisterService;
 
