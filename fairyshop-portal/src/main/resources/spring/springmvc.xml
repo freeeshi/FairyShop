@@ -10,6 +10,8 @@
 				        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 				        http://www.springframework.org/schema/context 
 				        http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath:properties/*.properties" />
     
     <!-- 配置包扫描器 -->
     <context:component-scan base-package="cn.fairyshop.portal.controller"></context:component-scan>
@@ -24,13 +26,11 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	 <!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-        解决freemarker中文乱码
-        <property name="contentType" value="text/html;charset=UTF-8"/>        
-        <property name="cache" value="true"/>
-        <property name="prefix" value=""/>
-        <property name="suffix" value=".ftl"/>
-        <property name="order" value="0"/>
-    </bean> -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/item/**"/>
+			<bean class="cn.fairyshop.portal.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
 </beans>    
