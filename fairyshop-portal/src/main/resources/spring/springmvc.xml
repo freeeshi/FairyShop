@@ -26,11 +26,12 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	<mvc:interceptors>
+	<!-- 配置拦截器 -->
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/item/**"/>
 			<bean class="cn.fairyshop.portal.LoginInterceptor" />
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 	
 </beans>    
