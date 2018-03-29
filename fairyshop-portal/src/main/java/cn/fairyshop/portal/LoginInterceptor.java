@@ -44,6 +44,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 			response.sendRedirect(SSO_LOGIN_URL + "?redirectURL=" + request.getRequestURL());
 			return false;
 		}
+		
+		// 把用户对象信息放在request中
+		request.setAttribute("user", user);
 
 		// 用户存在则返回true，继续执行
 		return true;
