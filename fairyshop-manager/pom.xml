@@ -1,17 +1,18 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>cn.fairyshop</groupId>
 		<artifactId>fairyshop-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
+
 	<groupId>cn.fairyshop</groupId>
 	<artifactId>fairyshop-manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>cn.fairyshop</groupId>
@@ -19,14 +20,14 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
-	
+
 	<modules>
 		<module>fairyshop-manager-pojo</module>
 		<module>fairyshop-manager-dao</module>
 		<module>fairyshop-manager-service</module>
 		<module>fairyshop-manager-web</module>
 	</modules>
-	
+
 	<!-- 添加tomcat插件 -->
 	<build>
 		<plugins>
@@ -36,9 +37,14 @@
 				<configuration>
 					<port>8080</port>
 					<path>/</path>
+					
+					<!-- 系统热部署配置 -->
+					<url>http://192.168.0.152:8080/manager/text</url>
+					<username>root</username>
+					<password>shilongfei</password>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

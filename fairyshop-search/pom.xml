@@ -71,6 +71,11 @@
 				<configuration>
 					<port>8083</port>
 					<path>/</path>
+					
+					<!-- 系统热部署配置 -->
+					<url>http://192.168.0.152:8083/manager/text</url>
+					<username>root</username>
+					<password>shilongfei</password>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -75,8 +75,13 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
-					<port>8084</port>
+					<port>8088</port>
 					<path>/</path>
+					
+					<!-- 系统热部署配置 -->
+					<url>http://192.168.0.152:8088/manager/text</url>
+					<username>root</username>
+					<password>shilongfei</password>
 				</configuration>
 			</plugin>
 		</plugins>
